@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cotizador Buyee ♥</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Georgia, serif;
+  background: #f3e4e2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  color: #6d171b;
+}
+
+.cotizador {
+  width: 100%;
+  max-width: 430px;
+  background: rgba(255, 248, 247, 0.96);
+  border: 2px solid #7c2528;
+  border-radius: 28px;
+  padding: 28px 22px;
+  box-shadow: 0 8px 30px rgba(80, 20, 20, 0.18);
+}
+
+h1 {
+  text-align: center;
+  font-size: 30px;
+  margin: 0 0 25px;
+}
+
+.caja {
+  border: 2px solid #7c2528;
+  border-radius: 22px;
+  padding: 20px;
+}
+
+label {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #a98b89;
+  border-radius: 18px;
+  font-size: 20px;
+  outline: none;
+  background: #fffafa;
+}
+
+.seguro {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.seguro input {
+  width: 25px;
+  height: 25px;
+  accent-color: #7c2528;
+}
+
+.resultado {
+  margin-top: 22px;
+  background: #e7c2c3;
+  border: 2px solid #7c2528;
+  border-radius: 22px;
+  padding: 20px;
+  text-align: center;
+}
+
+.resultado p {
+  margin: 0 0 8px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+#precio {
+  font-size: 42px;
+  font-weight: bold;
+}
+
+.nota {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="cotizador">
+
+  <h1>✧ Cotizador Buyee ♥ ✧</h1>
+
+  <div class="caja">
+
+    <label for="usd">Valor en dólares (USD)</label>
+
+    <input
+      type="number"
+      id="usd"
+      placeholder="0"
+      min="0"
+      step="0.01"
+      oninput="calcular()"
+    >
+
+    <label class="seguro">
+      <input
+        type="checkbox"
+        id="seguro"
+        onchange="calcular()"
+      >
+      Con seguro
+    </label>
+
+  </div>
+
+  <div class="resultado">
+    <p>Precio final:</p>
+    <div id="precio">$ 0</div>
+  </div>
+
+  <div class="nota">
+    ♥ Cotizador Buyee
+  </div>
+
+</div>
+
+<script>
+const COTIZACION = 1500;
+
+// 1.000 yenes de cargo de Buyee
+// convertidos aproximadamente a USD.
+const CARGO_BUYEE_USD = 6.67;
+
+function calcular() {
+
+  let usd = parseFloat(document.getElementById("usd").value) || 0;
+
+  let seguro = document.getElementById("seguro").checked;
+
+  if (seguro) {
+    usd += CARGO_BUYEE_USD;
+  }
+
+  let total = usd * COTIZACION;
+
+  document.getElementById("precio").textContent =
+    "$ " + Math.round(total).toLocaleString("es-AR");
+}
+</script>
+
+</body>
+  </html>
