@@ -158,7 +158,7 @@ function calcular() {
   let usd = parseFloat(document.getElementById("usd").value) || 0;
 
   let seguro = document.getElementById("seguro").checked;
-
+usd += CARGO_BUYEE_USD;
   if (seguro) {
     usd += CARGO_BUYEE_USD;
   }
